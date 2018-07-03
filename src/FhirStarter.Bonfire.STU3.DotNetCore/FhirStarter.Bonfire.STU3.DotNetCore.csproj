@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Hl7.Fhir.STU3" Version="0.96.0" />
+    <PackageReference Include="log4net" Version="2.0.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Helper\" />
+    <Folder Include="Log\" />
+    <Folder Include="Validation\" />
+    <Folder Include="Service\" />
+    <Folder Include="Parameter\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Spark.Engine.DotNetCore\Spark.Engine.DotNetCore.csproj" />
+  </ItemGroup>
+
+</Project>

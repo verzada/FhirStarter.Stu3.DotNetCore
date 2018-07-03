@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Hl7.Fhir.STU3" Version="0.96.0" />
+    <PackageReference Include="log4net" Version="2.0.8" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Auxiliary\" />
+    <Folder Include="ExceptionHandling\" />
+    <Folder Include="Filters\" />
+    <Folder Include="Formatters\" />
+    <Folder Include="Handlers\" />
+    <Folder Include="Infrastructure\" />
+    <Folder Include="Service\" />
+    <Folder Include="Search\" />
+  </ItemGroup>
+
+</Project>
