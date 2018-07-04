@@ -4,10 +4,13 @@ using System.Net.Http;
 using System.Text;
 using System.Xml.Linq;
 using FhirStarter.Bonfire.STU3.DotNetCore.Exceptions;
+using FhirStarter.Bonfire.STU3.DotNetCore.Helper;
 using Hl7.Fhir.Model;
 using Hl7.Fhir.Serialization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Internal;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Spark.Engine.DotNetCore.Core;
 
 namespace FhirStarter.Bonfire.STU3.DotNetCore.Filter
 {
@@ -44,17 +47,11 @@ namespace FhirStarter.Bonfire.STU3.DotNetCore.Filter
             SetResponseForClient(context, outCome);
         }
 
-        private static string GetAcceptHeaders(HttpContext context)
-        {
-            var accept = $"{context.Request.Headers["accept"]}";
-            return accept;
-        }
-
         private static void SetResponseForClient(ExceptionContext context, Resource outCome)
         {
             // "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8"
             //     var acceptEntry = HttpContext.Current.Request.Headers["Accept"];
-            var acceptEntry = GetAcceptHeaders(HttpContext);
+            var acceptEntry = Context.GetAcceptHeaders();
             var acceptJson = acceptEntry.Contains(FhirMediaType.HeaderTypeJson);
             var jsonSerializer = new FhirJsonSerializer();
             var xmlSerializer = new FhirXmlSerializer();
@@ -66,11 +63,16 @@ namespace FhirStarter.Bonfire.STU3.DotNetCore.Filter
             if (acceptJson)
             {
                 var json = jsonSerializer.SerializeToString(outCome);
-                context.Response = new HttpResponseMessage
-                {
-                    Content = new StringContent(json, Encoding.UTF8, FhirMediaType.JsonResource),
-                    StatusCode = statusCode
-                };
+                //context.Response = new HttpResponseMessage
+                //{
+                //    Content = new StringContent(json, Encoding.UTF8, FhirMediaType.JsonResource),
+                //    StatusCode = statusCode
+                //};
+                //var httpContext = new HttpContext();
+
+           context.Response
+            
+            
             }
             else
             {
